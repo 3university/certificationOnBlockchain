@@ -1,7 +1,7 @@
-const expires = require("express")
+const express = require("express")
 const {sendOTP} = require("../controller/otpController")
-const router = express.Router();
+const otpRouter = express.Router();
 
-router.post('/send-otp', sendOTP);
+otpRouter.post('/send-otp', sendOTP);
 
-module.exports = router;
+module.exports = otpRouter;

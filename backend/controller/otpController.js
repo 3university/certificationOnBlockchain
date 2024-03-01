@@ -1,20 +1,20 @@
 // controllers/otpController.js
 const otpGenerator = require('otp-generator');
-const OTP = require('../models/otpModel');
-const User = require('../models/userModel');
+const userModel = require("../model/userModel");
+const OTP = require('../model/otpModel');
 
 const sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
     // Check if user is already present
-    const checkUserPresent = await User.findOne({ email });
-    // If user found with provided email
-    if (checkUserPresent) {
-      return res.status(401).json({
-        success: false,
-        message: 'User is already registered',
-      });
-    }
+    // const checkUserPresent = await userModel.findOne({ email });
+    // // If user found with provided email
+    // if (checkUserPresent) {
+    //   return res.status(401).json({
+    //     success: false,
+    //     message: 'User is already registered',
+    //   });
+    // }
     let otp = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
@@ -35,10 +35,9 @@ const sendOTP = async (req, res) => {
       otp,
     });
   } catch (error) {
-    console.log(error.message);
+    console.log(error.message, "error message now");
     return res.status(500).json({ success: false, error: error.message });
   }
-  console.log("hello this is otp message")
 };
 
 module.exports = {sendOTP}
