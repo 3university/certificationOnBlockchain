@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const userModel = require("./model/userModel");
 const router = require("./routes/userRoutes");
+const otpRouter = require("./routes/otpRoutes")
 const cookieParser = require("cookie-parser")
 require("dotenv").config()
 
@@ -13,6 +14,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(cors({credentials:true, origin:"http://localhost:5173"}));
 app.use("/api", router)
+app.use("/api", otpRouter)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI).then(()=>{console.log("database done")}).catch((error)=>{console.log(error)});
