@@ -1,8 +1,9 @@
 const express = require("express")
 const { registerUser, loginUser, verifyToken, getUser, refreshToken, logout} = require("../controller/userController")
+const { sendOTP } = require("../controller/otpController")
 const router = express.Router()
 
-router.post('/register', registerUser)
+router.post('/register', registerUser, sendOTP)
 
 router.post('/login', loginUser)
 

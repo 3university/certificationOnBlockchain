@@ -41,12 +41,12 @@ const Register = () => {
       return; // Stop form submission if validation fails
     }
 
-    let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    // let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    if(inputs.email.match(emailRegex)){
-      alert("Invalid Email ID, Please Enter Valid Email ID");
-      return
-    }
+    // if(inputs.email.match(!emailRegex)){
+    //   alert("Invalid Email ID, Please Enter Valid Email ID");
+    //   return
+    // }
 
     // Check if password and confirm password match
     if (inputs.password !== inputs.confirm_password) {
@@ -85,7 +85,7 @@ const Register = () => {
       return
     }
 
-    sendRequest().then(()=>navigate("/login"))
+    sendRequest().then(()=>navigate("/verify-otp"))
     
 
     
