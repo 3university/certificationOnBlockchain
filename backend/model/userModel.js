@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  user_status:{
+    type:String,
+    default:"unverified"
+  }
 });
 
 const userModel = mongoose.model("User", userSchema);

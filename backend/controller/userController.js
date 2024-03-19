@@ -27,12 +27,33 @@ const registerUser = async (req, res, next) => {
     password,
     confirm_password,
     institute_role,
+    user_status
   } = req.body;
 
   // hashing the password and confirm password
   const hashedPassword = bcrypt.hashSync(password);
   const hashedConfirmPassword = bcrypt.hashSync(confirm_password);
 
+  // Create a new user instance
+  const newUser = new userModel({
+    name,
+    username,
+    user_status,
+    email,
+    institute_id,
+    password: hashedPassword,
+    institute_role,
+    confirm_password: hashedConfirmPassword,
+  });
+
+  try {
+    // Save the user to the database
+    await newUser.save();
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error("Error while saving user:", error.message);
+    // res.status(500).json({ error: "Internal Server Error" });
+  }
   next()
 };
 
