@@ -67,7 +67,7 @@ const Register = () => {
         confirm_password: inputs.confirm_password,
         password: inputs.password,
         institute_role: inputs.institute_role,
-      })
+      });
       const userData = await res.data.message;
       return userData;
     } catch (error) {
@@ -86,9 +86,6 @@ const Register = () => {
     }
 
     sendRequest().then(()=>navigate("/verify-otp"))
-    
-
-    
     };
     
 
